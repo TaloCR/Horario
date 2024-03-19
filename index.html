@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horario Materno</title>
+<script>
+window.onload = function() {
+var fechaActual = new Date();
+var dia = fechaActual.getDate();
+var mes = fechaActual.getMonth() + 1;
+var ano = fechaActual.getFullYear();
+var fechaActualFormateada = ano + "-" + (mes < 10 ? '0' : '') + mes + "-" + (dia < 10 ? '0' : '') + dia;
+var rangos = [
+{ inicio: '2024-02-05', fin: '2024-02-11', imagen: 'imagen_del_05-02-2024_al_11-02-2024.png' },
+{ inicio: '2024-02-12', fin: '2024-02-18', imagen: 'imagen_del_12-02-2024_al_18-02-2024.png' },
+{ inicio: '2024-02-19', fin: '2024-02-25', imagen: 'imagen_del_19-02-2024_al_25-02-2024.png' },
+{ inicio: '2024-02-26', fin: '2024-03-03', imagen: 'imagen_del_26-02-2024_al_03-03-2024.png' },
+{ inicio: '2024-03-04', fin: '2024-03-10', imagen: 'imagen_del_04-03-2024_al_10-03-2024.png' },
+{ inicio: '2024-03-11', fin: '2024-03-17', imagen: 'imagen_del_11-03-2024_al_17-03-2024.png' },
+{ inicio: '2024-03-18', fin: '2024-03-24', imagen: 'imagen_del_18-03-2024_al_24-03-2024.png' },
+{ inicio: '2024-03-25', fin: '2024-03-31', imagen: 'imagen_del_25-03-2024_al_31-03-2024.png' },
+{ inicio: '2024-04-01', fin: '2024-04-07', imagen: 'imagen_del_01-04-2024_al_07-04-2024.png' },
+{ inicio: '2024-04-08', fin: '2024-04-14', imagen: 'imagen_del_08-04-2024_al_14-04-2024.png' },
+{ inicio: '2024-04-15', fin: '2024-04-21', imagen: 'imagen_del_15-04-2024_al_21-04-2024.png' },
+{ inicio: '2024-04-22', fin: '2024-04-28', imagen: 'imagen_del_22-04-2024_al_28-04-2024.png' },
+{ inicio: '2024-04-29', fin: '2024-05-05', imagen: 'imagen_del_29-04-2024_al_05-05-2024.png' },
+{ inicio: '2024-05-06', fin: '2024-05-12', imagen: 'imagen_del_06-05-2024_al_12-05-2024.png' },
+{ inicio: '2024-05-13', fin: '2024-05-19', imagen: 'imagen_del_13-05-2024_al_19-05-2024.png' },
+{ inicio: '2024-05-20', fin: '2024-05-26', imagen: 'imagen_del_20-05-2024_al_26-05-2024.png' },
+{ inicio: '2024-05-27', fin: '2024-06-02', imagen: 'imagen_del_27-05-2024_al_02-06-2024.png' },
+{ inicio: '2024-06-03', fin: '2024-06-09', imagen: 'imagen_del_03-06-2024_al_09-06-2024.png' },
+{ inicio: '2024-06-10', fin: '2024-06-16', imagen: 'imagen_del_10-06-2024_al_16-06-2024.png' },
+{ inicio: '2024-06-17', fin: '2024-06-23', imagen: 'imagen_del_17-06-2024_al_23-06-2024.png' },
+{ inicio: '2024-06-24', fin: '2024-06-30', imagen: 'imagen_del_24-06-2024_al_30-06-2024.png' },
+{ inicio: '2024-07-01', fin: '2024-07-07', imagen: 'imagen_del_01-07-2024_al_07-07-2024.png' },
+{ inicio: '2024-07-08', fin: '2024-07-14', imagen: 'imagen_del_08-07-2024_al_14-07-2024.png' },
+{ inicio: '2024-07-15', fin: '2024-07-21', imagen: 'imagen_del_15-07-2024_al_21-07-2024.png' },
+{ inicio: '2024-07-22', fin: '2024-07-28', imagen: 'imagen_del_22-07-2024_al_28-07-2024.png' },
+{ inicio: '2024-07-29', fin: '2024-08-04', imagen: 'imagen_del_29-07-2024_al_04-08-2024.png' },
+{ inicio: '2024-08-05', fin: '2024-08-11', imagen: 'imagen_del_05-08-2024_al_11-08-2024.png' },
+{ inicio: '2024-08-12', fin: '2024-08-18', imagen: 'imagen_del_12-08-2024_al_18-08-2024.png' },
+{ inicio: '2024-08-19', fin: '2024-08-25', imagen: 'imagen_del_19-08-2024_al_25-08-2024.png' },
+{ inicio: '2024-08-26', fin: '2024-09-01', imagen: 'imagen_del_26-08-2024_al_01-09-2024.png' },
+{ inicio: '2024-09-02', fin: '2024-09-08', imagen: 'imagen_del_02-09-2024_al_08-09-2024.png' },
+{ inicio: '2024-09-09', fin: '2024-09-15', imagen: 'imagen_del_09-09-2024_al_15-09-2024.png' },
+{ inicio: '2024-09-16', fin: '2024-09-22', imagen: 'imagen_del_16-09-2024_al_22-09-2024.png' },
+{ inicio: '2024-09-23', fin: '2024-09-29', imagen: 'imagen_del_23-09-2024_al_29-09-2024.png' },
+{ inicio: '2024-09-30', fin: '2024-10-06', imagen: 'imagen_del_30-09-2024_al_06-10-2024.png' },
+{ inicio: '2024-10-07', fin: '2024-10-13', imagen: 'imagen_del_07-10-2024_al_13-10-2024.png' },
+{ inicio: '2024-10-14', fin: '2024-10-20', imagen: 'imagen_del_14-10-2024_al_20-10-2024.png' },
+{ inicio: '2024-10-21', fin: '2024-10-27', imagen: 'imagen_del_21-10-2024_al_27-10-2024.png' },
+{ inicio: '2024-10-28', fin: '2024-11-03', imagen: 'imagen_del_28-10-2024_al_03-11-2024.png' },
+{ inicio: '2024-11-04', fin: '2024-11-10', imagen: 'imagen_del_04-11-2024_al_10-11-2024.png' },
+{ inicio: '2024-11-11', fin: '2024-11-17', imagen: 'imagen_del_11-11-2024_al_17-11-2024.png' },
+{ inicio: '2024-11-18', fin: '2024-11-24', imagen: 'imagen_del_18-11-2024_al_24-11-2024.png' },
+{ inicio: '2024-11-25', fin: '2024-12-01', imagen: 'imagen_del_25-11-2024_al_01-12-2024.png' },
+{ inicio: '2024-12-02', fin: '2024-12-08', imagen: 'imagen_del_02-12-2024_al_08-12-2024.png' },
+{ inicio: '2024-12-09', fin: '2024-12-15', imagen: 'imagen_del_09-12-2024_al_15-12-2024.png' },
+];
+var imagenEncontrada = false;
+for (var i = 0; i < rangos.length; i++) {
+if (fechaActualFormateada >= rangos[i].inicio && fechaActualFormateada <= rangos[i].fin) {
+document.getElementById("imagen").src = rangos[i].imagen;
+imagenEncontrada = true;
+break;
+}
+}
+if (!imagenEncontrada) {
+document.getElementById("mensaje").innerText = "No hay imagen disponible para la fecha actual.";
+}
+};
+</script>
+</head>
+<body>
+<img id="imagen" src="" alt="Imagen">
+<p id="mensaje"></p>
+</body>
+</html>
