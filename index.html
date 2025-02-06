@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horario Materno</title>
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#imagen {
+  width: 100%;
+  height: auto;
+}
+</style>
+<script>
+window.onload = function() {
+var fechaActual = new Date();
+var dia = fechaActual.getDate();
+var mes = fechaActual.getMonth() + 1;
+var ano = fechaActual.getFullYear();
+var fechaActualFormateada = ano + "-" + (mes < 10 ? '0' : '') + mes + "-" + (dia < 10 ? '0' : '') + dia;
+var rangos = [
+{ inicio: '2025-02-03', fin: '2025-02-09', imagen: 'imagen_del_03-02-2025_al_09-02-2025.png' },
+{ inicio: '2025-02-10', fin: '2025-02-16', imagen: 'imagen_del_10-02-2025_al_16-02-2025.png' },
+{ inicio: '2025-02-17', fin: '2025-02-23', imagen: 'imagen_del_17-02-2025_al_23-02-2025.png' },
+{ inicio: '2025-02-24', fin: '2025-03-02', imagen: 'imagen_del_24-02-2025_al_02-03-2025.png' },
+{ inicio: '2025-03-03', fin: '2025-03-09', imagen: 'imagen_del_03-03-2025_al_09-03-2025.png' },
+{ inicio: '2025-03-10', fin: '2025-03-16', imagen: 'imagen_del_10-03-2025_al_16-03-2025.png' },
+{ inicio: '2025-03-17', fin: '2025-03-23', imagen: 'imagen_del_17-03-2025_al_23-03-2025.png' },
+{ inicio: '2025-03-24', fin: '2025-03-30', imagen: 'imagen_del_24-03-2025_al_30-03-2025.png' },
+{ inicio: '2025-03-31', fin: '2025-04-06', imagen: 'imagen_del_31-03-2025_al_06-04-2025.png' },
+{ inicio: '2025-04-07', fin: '2025-04-13', imagen: 'imagen_del_07-04-2025_al_13-04-2025.png' },
+{ inicio: '2025-04-14', fin: '2025-04-20', imagen: 'imagen_del_14-04-2025_al_20-04-2025.png' },
+{ inicio: '2025-04-21', fin: '2025-04-27', imagen: 'imagen_del_21-04-2025_al_27-04-2025.png' },
+{ inicio: '2025-04-28', fin: '2025-05-04', imagen: 'imagen_del_28-04-2025_al_04-05-2025.png' },
+{ inicio: '2025-05-05', fin: '2025-05-11', imagen: 'imagen_del_05-05-2025_al_11-05-2025.png' },
+{ inicio: '2025-05-12', fin: '2025-05-18', imagen: 'imagen_del_12-05-2025_al_18-05-2025.png' },
+{ inicio: '2025-05-19', fin: '2025-05-25', imagen: 'imagen_del_19-05-2025_al_25-05-2025.png' },
+{ inicio: '2025-05-26', fin: '2025-06-01', imagen: 'imagen_del_26-05-2025_al_01-06-2025.png' },
+{ inicio: '2025-06-02', fin: '2025-06-08', imagen: 'imagen_del_02-06-2025_al_08-06-2025.png' },
+{ inicio: '2025-06-09', fin: '2025-06-15', imagen: 'imagen_del_09-06-2025_al_15-06-2025.png' },
+{ inicio: '2025-06-16', fin: '2025-06-22', imagen: 'imagen_del_16-06-2025_al_22-06-2025.png' },
+{ inicio: '2025-06-23', fin: '2025-06-29', imagen: 'imagen_del_23-06-2025_al_29-06-2025.png' },
+{ inicio: '2025-06-30', fin: '2025-07-06', imagen: 'imagen_del_30-06-2025_al_06-07-2025.png' },
+{ inicio: '2025-07-07', fin: '2025-07-13', imagen: 'imagen_del_07-07-2025_al_13-07-2025.png' },
+{ inicio: '2025-07-14', fin: '2025-07-20', imagen: 'imagen_del_14-07-2025_al_20-07-2025.png' },
+{ inicio: '2025-07-21', fin: '2025-07-27', imagen: 'imagen_del_21-07-2025_al_27-07-2025.png' },
+{ inicio: '2025-07-28', fin: '2025-08-03', imagen: 'imagen_del_28-07-2025_al_03-08-2025.png' },
+{ inicio: '2025-08-04', fin: '2025-08-10', imagen: 'imagen_del_04-08-2025_al_10-08-2025.png' },
+{ inicio: '2025-08-11', fin: '2025-08-17', imagen: 'imagen_del_11-08-2025_al_17-08-2025.png' },
+{ inicio: '2025-08-18', fin: '2025-08-24', imagen: 'imagen_del_18-08-2025_al_24-08-2025.png' },
+{ inicio: '2025-08-25', fin: '2025-08-31', imagen: 'imagen_del_25-08-2025_al_31-08-2025.png' },
+{ inicio: '2025-09-01', fin: '2025-09-07', imagen: 'imagen_del_01-09-2025_al_07-09-2025.png' },
+{ inicio: '2025-09-08', fin: '2025-09-14', imagen: 'imagen_del_08-09-2025_al_14-09-2025.png' },
+{ inicio: '2025-09-15', fin: '2025-09-21', imagen: 'imagen_del_15-09-2025_al_21-09-2025.png' },
+{ inicio: '2025-09-22', fin: '2025-09-28', imagen: 'imagen_del_22-09-2025_al_28-09-2025.png' },
+{ inicio: '2025-09-29', fin: '2025-10-05', imagen: 'imagen_del_29-09-2025_al_05-10-2025.png' },
+{ inicio: '2025-10-06', fin: '2025-10-12', imagen: 'imagen_del_06-10-2025_al_12-10-2025.png' },
+{ inicio: '2025-10-13', fin: '2025-10-19', imagen: 'imagen_del_13-10-2025_al_19-10-2025.png' },
+{ inicio: '2025-10-20', fin: '2025-10-26', imagen: 'imagen_del_20-10-2025_al_26-10-2025.png' },
+{ inicio: '2025-10-27', fin: '2025-11-02', imagen: 'imagen_del_27-10-2025_al_02-11-2025.png' },
+{ inicio: '2025-11-03', fin: '2025-11-09', imagen: 'imagen_del_03-11-2025_al_09-11-2025.png' },
+{ inicio: '2025-11-10', fin: '2025-11-16', imagen: 'imagen_del_10-11-2025_al_16-11-2025.png' },
+{ inicio: '2025-11-17', fin: '2025-11-23', imagen: 'imagen_del_17-11-2025_al_23-11-2025.png' },
+{ inicio: '2025-11-24', fin: '2025-11-30', imagen: 'imagen_del_24-11-2025_al_30-11-2025.png' },
+{ inicio: '2025-12-01', fin: '2025-12-07', imagen: 'imagen_del_01-12-2025_al_07-12-2025.png' },
+{ inicio: '2025-12-08', fin: '2025-12-14', imagen: 'imagen_del_08-12-2025_al_14-12-2025.png' },
+];
+var imagenEncontrada = false;
+for (var i = 0; i < rangos.length; i++) {
+if (fechaActualFormateada >= rangos[i].inicio && fechaActualFormateada <= rangos[i].fin) {
+document.getElementById("imagen").src = rangos[i].imagen;
+imagenEncontrada = true;
+break;
+}
+}
+if (!imagenEncontrada) {
+document.getElementById("mensaje").innerText = "No hay imagen disponible para la fecha actual.";
+}
+};
+</script>
+</head>
+<body>
+<img id="imagen" src="" alt="Imagen">
+<p id="mensaje"></p>
+</body>
+</html>
