@@ -11,6 +11,15 @@ body, html {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+#fecha {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 #imagen {
   width: 100%;
@@ -86,6 +95,7 @@ document.getElementById("mensaje").innerText = "No hay imagen disponible para la
 </script>
 </head>
 <body>
+<div id="fecha">Hoy es: 10/feb/2025</div>
 <img id="imagen" src="" alt="Imagen">
 <p id="mensaje"></p>
 </body>
