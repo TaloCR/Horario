@@ -27,13 +27,20 @@ body, html {
 }
 </style>
 <script>
+function formatearFecha(fecha) {
+  const dias = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  const dia = fecha.getDate();
+  const mes = meses[fecha.getMonth()];
+  const anio = fecha.getFullYear();
+  return `${dia < 10 ? '0' + dia : dia}/${mes}/${anio}`;
+}
 window.onload = function() {
-var fechaActual = new Date();
-var dia = fechaActual.getDate();
-var mes = fechaActual.getMonth() + 1;
-var ano = fechaActual.getFullYear();
-var fechaActualFormateada = ano + "-" + (mes < 10 ? '0' : '') + mes + "-" + (dia < 10 ? '0' : '') + dia;
-var rangos = [
+  var fechaActual = new Date();
+  var fechaFormateada = formatearFecha(fechaActual);
+  document.getElementById('fecha').innerText = 'Hoy es: ' + fechaFormateada;
+  var fechaActualFormateada = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1 < 10 ? '0' : '') + (fechaActual.getMonth() + 1) + '-' + (fechaActual.getDate() < 10 ? '0' : '') + fechaActual.getDate();
+  var rangos = [
 { inicio: '2025-02-03', fin: '2025-02-09', imagen: 'imagen_del_03-02-2025_al_09-02-2025.png' },
 { inicio: '2025-02-10', fin: '2025-02-16', imagen: 'imagen_del_10-02-2025_al_16-02-2025.png' },
 { inicio: '2025-02-17', fin: '2025-02-23', imagen: 'imagen_del_17-02-2025_al_23-02-2025.png' },
@@ -79,23 +86,23 @@ var rangos = [
 { inicio: '2025-11-24', fin: '2025-11-30', imagen: 'imagen_del_24-11-2025_al_30-11-2025.png' },
 { inicio: '2025-12-01', fin: '2025-12-07', imagen: 'imagen_del_01-12-2025_al_07-12-2025.png' },
 { inicio: '2025-12-08', fin: '2025-12-14', imagen: 'imagen_del_08-12-2025_al_14-12-2025.png' },
-];
-var imagenEncontrada = false;
-for (var i = 0; i < rangos.length; i++) {
-if (fechaActualFormateada >= rangos[i].inicio && fechaActualFormateada <= rangos[i].fin) {
-document.getElementById("imagen").src = rangos[i].imagen;
-imagenEncontrada = true;
-break;
-}
-}
-if (!imagenEncontrada) {
-document.getElementById("mensaje").innerText = "No hay imagen disponible para la fecha actual.";
-}
+  ];
+  var imagenEncontrada = false;
+  for (var i = 0; i < rangos.length; i++) {
+    if (fechaActualFormateada >= rangos[i].inicio && fechaActualFormateada <= rangos[i].fin) {
+      document.getElementById('imagen').src = rangos[i].imagen;
+      imagenEncontrada = true;
+      break;
+    }
+  }
+  if (!imagenEncontrada) {
+    document.getElementById('mensaje').innerText = 'No hay imagen disponible para la fecha actual.';
+  }
 };
 </script>
 </head>
 <body>
-<div id="fecha">Hoy es: 10/feb/2025</div>
+<div id="fecha"></div>
 <img id="imagen" src="" alt="Imagen">
 <p id="mensaje"></p>
 </body>
