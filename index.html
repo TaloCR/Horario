@@ -37,7 +37,7 @@ function formatearFecha(fecha) {
   const dia = fecha.getDate();
   const mes = meses[fecha.getMonth()];
   const anio = fecha.getFullYear();
-  return `${dia < 10 ? '0' + dia : dia}/${mes}/${anio}`;
+  return `${dia < 10 ? '0' + dia : dia}-${mes}-${anio}`;
 }
 window.onload = function() {
   var fechaActual = new Date();
