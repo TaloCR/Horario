@@ -19,7 +19,7 @@ body, html {
   text-align: center;
   position: absolute;
   top: 75px;
-  left: 50px;
+  left: 75px;
   font-family: 'Fredericka the Great', cursive;
   color: white;
   font-weight: 500;
@@ -43,7 +43,7 @@ function formatearFecha(fecha) {
   const ampm = horas >= 12 ? 'PM' : 'AM';
   horas = horas % 12;
   horas = horas ? horas : 12; // La hora 0 debe mostrarse como 12
-  return `${dia < 10 ? '0' + dia : dia}-${mes}-${anio} ${horas < 10 ? '0' + horas : horas}:${minutos < 10 ? '0' + minutos : minutos}:${segundos < 10 ? '0' + segundos : segundos} ${ampm}`;
+  return `${dia < 10 ? '0' + dia : dia}-${mes}-${anio}`;
 }
 function actualizarFechaHora() {
   var fechaActual = new Date();
