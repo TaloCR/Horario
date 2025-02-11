@@ -37,12 +37,20 @@ function formatearFecha(fecha) {
   const dia = fecha.getDate();
   const mes = meses[fecha.getMonth()];
   const anio = fecha.getFullYear();
-  return `${dia < 10 ? '0' + dia : dia}-${mes}-${anio}`;
+  const horas = fecha.getHours();
+  const minutos = fecha.getMinutes();
+  const segundos = fecha.getSeconds();
+  return `${dia < 10 ? '0' + dia : dia}-${mes}-${anio} ${horas < 10 ? '0' + horas : horas}:${minutos < 10 ? '0' + minutos : minutos}:${segundos < 10 ? '0' + segundos : segundos}`;
 }
-window.onload = function() {
+function actualizarFechaHora() {
   var fechaActual = new Date();
   var fechaFormateada = formatearFecha(fechaActual);
   document.getElementById('fecha').innerText = 'Hoy es: ' + fechaFormateada;
+}
+window.onload = function() {
+  actualizarFechaHora();
+  setInterval(actualizarFechaHora, 1000);
+  var fechaActual = new Date();
   var fechaActualFormateada = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1 < 10 ? '0' : '') + (fechaActual.getMonth() + 1) + '-' + (fechaActual.getDate() < 10 ? '0' : '') + fechaActual.getDate();
   var rangos = [
 { inicio: '2025-02-03', fin: '2025-02-09', imagen: 'imagen_del_03-02-2025_al_09-02-2025.png' },
